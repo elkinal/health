@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { PieChart } from 'recharts';
 import Chart1 from "./Chart1";
 import Chart2 from "./Chart2";
+import Lambda from "./Lambda";
 import AWS from 'aws-sdk';
 import config from './credentials'; // Import the configuration file
 
@@ -87,8 +88,18 @@ function MainForm() {
         <p>{error}</p>
       ) : (
         <div id="chart-container">
+          <h1>Frontend</h1>
+
+          <h2>Sleep Stages</h2>
           <Chart1 data={data[0]} />
+          <p>This graph shows the proportion of sleep stages</p>
+
+          <h2>Weekly Sleep Latency</h2>
           <Chart2 data={data[1]} />
+          <p>This graph shows the weekly sleep latency</p>
+
+          <h1>Backend</h1>
+          <Lambda />
         </div>
       )}
     </div>

@@ -44,7 +44,7 @@ export default class Example extends PureComponent {
           <LineChart data={meanData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="month" />
-            <YAxis />
+            <YAxis tickFormatter={(tick) => `${tick}%`} />
             <Tooltip formatter={tooltipFormatter} />
             <Legend />
             <Line type="monotone" dataKey="percentageNightLight" stroke="#8884d8" strokeWidth={1.5} name="Night Light" />

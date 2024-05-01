@@ -16,7 +16,7 @@ export default class Example extends PureComponent {
     // Loading the data
     let { data } = this.props;
 
-    // Sort data by weekday
+    // Sorting data by weekday
     data = data.sort((a, b) => {
       const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
       return weekdays.indexOf(a.weekday) - weekdays.indexOf(b.weekday);
@@ -31,7 +31,7 @@ export default class Example extends PureComponent {
          >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="weekday" />
-            <YAxis domain={[-70, 70]} /> {/* Set the range for Y-axis here */}
+            <YAxis domain={[-70, 70]} tickFormatter={(tick) => `${tick}%`} /> 
             <Tooltip />
             <Legend />
             <ReferenceLine y={0} stroke="#000" />

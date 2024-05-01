@@ -4,6 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { PieChart } from 'recharts';
 import Chart1 from "./Chart1";
+import Chart2 from "./Chart2";
 import AWS from 'aws-sdk';
 import config from './credentials'; // Import the configuration file
 
@@ -64,6 +65,7 @@ function MainForm() {
       ) : (
         <div id="pie-chart">
           <Chart1 data={data} />
+          <Chart2 data={data} />
         </div>
       )}
     </div>

@@ -88,17 +88,28 @@ function MainForm() {
         <p>{error}</p>
       ) : (
         <div id="chart-container">
-          <h1>Frontend</h1>
+          <h1 id="main-heading">121 Health Fullstack Demo</h1>
+          <h2 id="main-subheading">Alexey Elkin (ae339)</h2>
 
-          <h2>Sleep Stages</h2>
+          <h2 class="subheading">How does the ratio of sleep stages change throughout the year?</h2>
           <Chart1 data={data[0]} />
-          <p>This graph shows the proportion of sleep stages</p>
+          <p class="description">This graph shows the proportion of sleep stages</p>
 
-          <h2>Weekly Sleep Latency</h2>
+          <h2 class="subheading">What days of the week does it take longest to fall asleep?</h2>
           <Chart2 data={data[1]} />
-          <p>This graph shows the weekly sleep latency</p>
+          <p class="description">What days of the week does it take longest to fall asleep?</p>
+
+          <h1>Frontend</h1>
+          <p>This website was created using <b>React.js</b> for the frontend. I used <b>Recharts.js</b> to draw the interactive graphs.</p>
 
           <h1>Backend</h1>
+          <p>
+            The raw <code>.csv</code> data is processed by an <b>AWS Lambda function</b> that loads the files from an <b>S3 Server</b> automatically once they are uploaded.
+            The data inside the <code>.csv</code> files is formatted for each graph and written into two separate <b>DynamoDB</b> tables.
+          </p>
+          <p>
+            You can see the code for the <b>Lambda function</b> below.
+          </p>
           <Lambda />
         </div>
       )}

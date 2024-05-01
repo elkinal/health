@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
 import Prism from 'prismjs';
-import 'prismjs/themes/prism.css'; // Import desired Prism.js theme
+import 'prismjs/themes/prism.css'; 
 import 'prismjs/components/prism-python';
 
 const CodeSnippet = () => {
   useEffect(() => {
-    // Call Prism.highlightAll() to format code blocks after component mounts
     Prism.highlightAll();
   }, []);
 
   return (
-    <div className="chart">
+    <div className="chart code-chart">
       <pre>
         <code className="language-python">{`
 import json

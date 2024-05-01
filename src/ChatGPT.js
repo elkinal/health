@@ -55,23 +55,22 @@ const ChatGPTForm = () => {
   };
 
   return (
-    <div style={{ maxWidth: '1000px', height: '500px', margin: 'auto', fontFamily: 'Arial, sans-serif', overflow: 'hidden' }}>
-      <div className="chat-window" style={{ border: '1px solid #ccc', borderRadius: '5px', minHeight: '300px', maxHeight: '100%', overflowY: 'scroll' }}>
+    <div className='chart gpt-chart'>
+      <div className="chat-window">
         {messages.map((message, index) => (
-          <div key={index} className={`message ${message.sender}`} style={{ padding: '5px', borderBottom: '1px solid #eee', wordWrap: 'break-word' }}>
-            <p style={{ margin: 0 }}>{message.text}</p>
+          <div key={index} className={`message ${message.sender}`}>
+            <p>{message.text}</p>
           </div>
         ))}
       </div>
-      <form onSubmit={handleSubmit} className="message-input" style={{ display: 'flex', marginTop: '10px' }}>
+      <form onSubmit={handleSubmit} className="message-input">
         <input
           type="text"
-          placeholder="Type a message..."
+          placeholder="Eg: Does my diet influence my sleep?"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
-          style={{ flex: '1', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
         />
-        <button type="submit" style={{ marginLeft: '10px', padding: '8px 15px', borderRadius: '5px', background: '#007bff', color: '#fff', border: 'none', cursor: 'pointer' }}>Send</button>
+        <button type="submit">Ask</button>
       </form>
     </div>
   );

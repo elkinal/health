@@ -39,8 +39,11 @@ code {
 .description {
   font-size:18px;
 }
-p {
+p, li, input, button{
   font-size:18px;
+}
+li {
+  font-style:italic;
 }
 .variables {
   margin-bottom:55px;
@@ -73,9 +76,57 @@ p {
   margin-bottom:80px;
 }
 .language-python {
-  /* float:right; */
   width:100%;
 }
 html {
   height:2000px;
+}
+.chat-window {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  height:500px;
+  width:100%;
+  margin:0;
+  overflow-y: scroll;
+  box-sizing:border-box;
+  padding:10px;
+  background-color:whitesmoke;
+}
+.gpt-chart {
+  padding:20px;
+  background-color:#f5f5f5;
+}
+.message {
+  padding: 10px;
+  border-bottom: 1px solid #82ca9d;
+  word-wrap: break-word;
+}
+.message p {
+  margin: 0;
+}
+.message-input {
+  display: flex;
+  margin-top: 10px;
+}
+.message-input input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.message-input button {
+  margin-left: 10px;
+  padding: 8px 15px;
+  border-radius: 5px;
+  background: #82ca9d;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.user {
+  font-weight:600;
+}
+.bot {
+  font-style:italic;
+  text-align:right;
 }

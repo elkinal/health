@@ -126,9 +126,17 @@ function MainForm() {
             variables : <a href="https://garden.121health.app/Biometrics/sleepLatency">sleepLatency</a>
           </p>
           <h1>Medical Chatbot</h1>
+          <p>Suggested questions:</p>
+          <ul>
+            <li>How do I decrease my sleep latency?</li>
+            <li>What factors influence the quality of sleep?</li>
+            <li>What should I change in my routine to have more energy?</li>
+          </ul>
+          <ChatGPT />
 
           <h1>Frontend</h1>
           <p>This website was created using <b>React.js</b> for the frontend. I used <b>Recharts.js</b> to draw the interactive graphs.</p>
+          <p>I used OpenAI's <b>ChatGPT API</b> to create the chatbot.</p>
 
           <h1>Backend</h1>
           <p>
@@ -139,7 +147,6 @@ function MainForm() {
             You can see the code for the <b>Lambda function</b> below.
           </p>
           <Lambda />
-          <ChatGPT />
         </div>
       )}
     </div>

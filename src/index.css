@@ -130,3 +130,7 @@ html {
   font-style:italic;
   text-align:right;
 }
+.language-python {
+  height:600px;
+  overflow-y:scroll;
+}

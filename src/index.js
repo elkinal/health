@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { PieChart } from 'recharts';
 import Chart1 from "./Chart1";
 import Chart2 from "./Chart2";
 import Lambda from "./Lambda";
@@ -91,9 +90,8 @@ function MainForm() {
         <div id="chart-container">
           <div id="heading-container">
             <h1 id="main-heading">121 Health Fullstack Demo</h1>
-            <h2 id="main-subheading">Alexey Elkin (ae339)</h2>
+            <h2 id="main-subheading">Alexey Elkin (ae339) <a href="https://github.com/elkinal/health" target="_blank">Github</a></h2>
           </div>
-
           <h1>Graphs</h1>
           <h2 class="subheading">How does the ratio of sleep stages change throughout the year?</h2>
           <Chart1 data={data[0]} />
@@ -144,9 +142,11 @@ function MainForm() {
             The data inside the <code>.csv</code> files is formatted for each graph and written into two separate <b>DynamoDB</b> tables, which are then read by this <b>React.js</b> application.
           </p>
           <p>
-            You can see the code for the <b>Lambda function</b> below.
+            You can see <b>Python</b> code I used to parse and organize the data in the <b>Lambda function</b> below.
           </p>
           <Lambda />
+          <h1>Development process</h1>
+          <p>stuff goes here.</p>
         </div>
       )}
     </div>

@@ -22,6 +22,14 @@ export default class Example extends PureComponent {
       return weekdays.indexOf(a.weekday) - weekdays.indexOf(b.weekday);
     });
 
+    // Adding percentage sign after value
+    const tooltipFormatter = (value) => {
+      const sign = value >= 0 ? '+' : '-';
+      const triangle = value >= 0 ? '▲' : '▼';
+      return `${triangle}${sign}${Math.abs(value)}%`;
+    };
+    
+
     return (
       <div class="chart">
          <ResponsiveContainer width="100%" height={300}>
@@ -32,11 +40,11 @@ export default class Example extends PureComponent {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="weekday" />
             <YAxis domain={[-70, 70]} tickFormatter={(tick) => `${tick}%`} /> 
-            <Tooltip />
+            <Tooltip formatter={tooltipFormatter} />
             <Legend />
             <ReferenceLine y={0} stroke="#000" />
-            <Bar dataKey="school_percent_deviation" fill="#8884d8" name="School %" />
-            <Bar dataKey="summer_percent_deviation" fill="#82ca9d" name="Summer %" />
+            <Bar dataKey="school_percent_deviation" fill="#8884d8" name="School Sleep Latency" />
+            <Bar dataKey="summer_percent_deviation" fill="#82ca9d" name="Summer Sleep Latency" />
          </BarChart>
          </ResponsiveContainer>
       </div>

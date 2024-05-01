@@ -29,7 +29,6 @@ export default class Example extends PureComponent {
     // Tooltip formatter function to round values to 1 decimal place
     const tooltipFormatter = (value) => `${value.toFixed(1)}%`;
 
-
     // Ideal values for each factor
     const idealValues = {
       percentageNightLight: 60,
@@ -47,9 +46,9 @@ export default class Example extends PureComponent {
             <YAxis tickFormatter={(tick) => `${tick}%`} />
             <Tooltip formatter={tooltipFormatter} />
             <Legend />
-            <Line type="monotone" dataKey="percentageNightLight" stroke="#8884d8" strokeWidth={1.5} name="Night Light" />
-            <Line type="monotone" dataKey="percentageNightRem" stroke="#82ca9d" strokeWidth={1.5} name="Night REM" />
-            <Line type="monotone" dataKey="percentageNightDeep" stroke="#ffc658" strokeWidth={1.5} name="Night Deep" />
+            <Line type="monotone" dataKey="percentageNightLight" stroke="#8884d8" strokeWidth={1.5} name="Light Sleep" />
+            <Line type="monotone" dataKey="percentageNightRem" stroke="#82ca9d" strokeWidth={1.5} name="REM Sleep" />
+            <Line type="monotone" dataKey="percentageNightDeep" stroke="#ffc658" strokeWidth={1.5} name="Deep Sleep" />
             {Object.keys(idealValues).map((factor, index) => (
               <ReferenceLine key={index} y={idealValues[factor]} stroke={getColor(factor)} strokeDasharray="5 5"/>
             ))}

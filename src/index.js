@@ -88,16 +88,40 @@ function MainForm() {
         <p>{error}</p>
       ) : (
         <div id="chart-container">
-          <h1 id="main-heading">121 Health Fullstack Demo</h1>
-          <h2 id="main-subheading">Alexey Elkin (ae339)</h2>
+          <div id="heading-container">
+            <h1 id="main-heading">121 Health Fullstack Demo</h1>
+            <h2 id="main-subheading">Alexey Elkin (ae339)</h2>
+          </div>
 
+          <h1>Graphs</h1>
           <h2 class="subheading">How does the ratio of sleep stages change throughout the year?</h2>
           <Chart1 data={data[0]} />
-          <p class="description">This graph shows the proportion of sleep stages</p>
+          <p class="description">
+            This graph shows the average proportion of sleep stages per month. 
 
-          <h2 class="subheading">What days of the week does it take longest to fall asleep?</h2>
+            The dashed horizontal lines represent the <a href="https://dawnhouseliving.com/blogs/news/deep-vs-light-sleep-what-amount-is-really-needed" target="_blank">recommended</a> levels for each sleep phase,
+            serving as a guide that lets the viewer know what aspects of their sleep they should improve.
+
+          </p>
+          <p class="variables">
+            variables : <a href="https://garden.121health.app/Biometrics/percentageNightLight" target="_blank">percentageNightLight</a>, 
+            <a href="https://garden.121health.app/Biometrics/percentageNightRem" target="_blank">  percentageNightREM</a>,
+            <a href="https://garden.121health.app/Biometrics/percentageNightDeep" target="_blank"> percentageNightDeep</a>
+          </p>
+
+          <h2 class="subheading">What days of the week does it take the longest to fall asleep?</h2>
           <Chart2 data={data[1]} />
-          <p class="description">What days of the week does it take longest to fall asleep?</p>
+          <p class="description">This graph shows the percentage deviation in the average sleep latency across different days of the week.
+          This data is separated into two categories: <u>School</u>, which only includes days during Cornell's semesters and <u>Summer</u> which only includes days during the break.</p>
+          <p class="description">This graph shows that during school days, it usually takes much longer to fall asleep on Fridays and Saturdays (&#x1F37A;?)
+          <br></br>On the other hand, the user tends to fall asleep very quickly on Mondays during the school year.</p>
+
+          <p class="description">During breaks the user's <u>sleep latency</u> doesn't vary too much, although they tend to take longer to fall asleep on Thursdays, and slightly shorter on Mondays.</p>
+
+          <p class="variables">
+            variables : <a href="https://garden.121health.app/Biometrics/sleepLatency">sleepLatency</a>
+          </p>
+          <h1>Medical Chatbot</h1>
 
           <h1>Frontend</h1>
           <p>This website was created using <b>React.js</b> for the frontend. I used <b>Recharts.js</b> to draw the interactive graphs.</p>

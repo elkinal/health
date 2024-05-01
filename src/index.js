@@ -17,7 +17,7 @@ function MainForm() {
   }, []);
 
   function getData() {
-    
+
     // Configuring AWS client
     AWS.config.update({
       region: 'us-east-2',
@@ -29,12 +29,13 @@ function MainForm() {
 
     const params = {
       TableName: 'sleep_data',
-      ProjectionExpression: '#start, #percentageNightDeep, #percentageNightLight, #percentageNightRem',
+      ProjectionExpression: '#start, #percentageNightDeep, #percentageNightLight, #percentageNightRem, #percentageNightUnknown',
       ExpressionAttributeNames: {
         '#start': 'start',
         '#percentageNightDeep': 'percentageNightDeep',
         '#percentageNightLight': 'percentageNightLight',
-        '#percentageNightRem': 'percentageNightRem'
+        '#percentageNightRem': 'percentageNightRem',
+        '#percentageNightUnknown' : 'percentageNightUnknown'
       }
     };
 

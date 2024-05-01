@@ -1,45 +1,73 @@
 import React, { PureComponent } from 'react';
-import { LineChart, Line, Legend, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, Legend, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 
 export default class Example extends PureComponent {
   render() {
     // Loading the data
     const { data } = this.props;
 
-    // Grouping data by week and calculating mean values
+    // Grouping data by month and calculating mean values
     const aggregatedData = data.reduce((acc, current) => {
-      const weekStart = current.start; 
-      if (!acc[weekStart]) {
-        acc[weekStart] = { weekStart, totalNightLight: 0, totalNightRem: 0, totalNightDeep: 0, count: 0 };
+      const month = current.start.substring(0, 7); // Extracting the year-month part from the start date
+      if (!acc[month]) {
+        acc[month] = { month, totalNightLight: 0, totalNightRem: 0, totalNightDeep: 0, count: 0 };
       }
-      acc[weekStart].totalNightLight += parseFloat(current.percentageNightLight);
-      acc[weekStart].totalNightRem += parseFloat(current.percentageNightRem);
-      acc[weekStart].totalNightDeep += parseFloat(current.percentageNightDeep);
-      acc[weekStart].count++;
+      acc[month].totalNightLight += parseFloat(current.percentageNightLight);
+      acc[month].totalNightRem += parseFloat(current.percentageNightRem);
+      acc[month].totalNightDeep += parseFloat(current.percentageNightDeep);
+      acc[month].count++;
       return acc;
     }, {});
 
-    const meanData = Object.values(aggregatedData).map(weekData => ({
-      ...weekData,
-      percentageNightLight: weekData.totalNightLight / weekData.count,
-      percentageNightRem: weekData.totalNightRem / weekData.count,
-      percentageNightDeep: weekData.totalNightDeep / weekData.count,
+    const meanData = Object.values(aggregatedData).map(monthData => ({
+      ...monthData,
+      percentageNightLight: monthData.totalNightLight / monthData.count,
+      percentageNightRem: monthData.totalNightRem / monthData.count,
+      percentageNightDeep: monthData.totalNightDeep / monthData.count,
     }));
+
+    // Tooltip formatter function to round values to 1 decimal place
+    const tooltipFormatter = (value) => `${value.toFixed(1)}%`;
+
+
+    // Ideal values for each factor
+    const idealValues = {
+      percentageNightLight: 60,
+      percentageNightRem: 25,
+      percentageNightDeep: 20,
+    };
 
     // Drawing the graph
     return (
       <ResponsiveContainer width="100%" height={400}>
         <LineChart data={meanData}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="weekStart" />
+          <XAxis dataKey="month" />
           <YAxis />
-          <Tooltip />
+          <Tooltip formatter={tooltipFormatter} />
           <Legend />
-          <Line type="monotone" dataKey="percentageNightLight" stroke="#8884d8" name="Night Light" />
-          <Line type="monotone" dataKey="percentageNightRem" stroke="#82ca9d" name="Night REM" />
-          <Line type="monotone" dataKey="percentageNightDeep" stroke="#ffc658" name="Night Deep" />
+          <Line type="monotone" dataKey="percentageNightLight" stroke="#8884d8" strokeWidth={1.5} name="Night Light" />
+          <Line type="monotone" dataKey="percentageNightRem" stroke="#82ca9d" strokeWidth={1.5} name="Night REM" />
+          <Line type="monotone" dataKey="percentageNightDeep" stroke="#ffc658" strokeWidth={1.5} name="Night Deep" />
+          {Object.keys(idealValues).map((factor, index) => (
+            <ReferenceLine key={index} y={idealValues[factor]} stroke={getColor(factor)} strokeDasharray="5 5"/>
+          ))}
         </LineChart>
       </ResponsiveContainer>
     );
   }
 }
+
+// Function to get color based on factor
+const getColor = (factor) => {
+  switch (factor) {
+    case 'percentageNightLight':
+      return '#8884d8';
+    case 'percentageNightRem':
+      return '#82ca9d';
+    case 'percentageNightDeep':
+      return '#ffc658';
+    default:
+      return 'black';
+  }
+};

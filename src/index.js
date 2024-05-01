@@ -146,7 +146,37 @@ function MainForm() {
           </p>
           <Lambda />
           <h1>Development process</h1>
-          <p>stuff goes here.</p>
+          <h2>Planning</h2>
+          <p>
+            From the very beginning of the project I planned to have a few large graphs that demonstrate that 
+            I know how to organize and parse data in <b>Python</b> and visualize it with <b>React</b>.
+            </p>
+            <p>
+            I also wanted to show that I know how to work with <b>AWS</b>, more specifically <b>S3</b>, <b>DynamoDB</b>, and <b>Lambda Functions</b>.
+            That's why I decided to store the <i>.csv</i> files in S3, parse them with a lambda function, and store the output data in a DynamoDB database.
+          </p>
+          <p>
+            I also wanted to include a <i>Chatbot</i> that allows you to get medical advice, as suggested in the <code>.pdf</code> file shared with me. 
+          </p>
+          <h2>Method</h2>
+          <p>
+            First, I parsed the <code>.csv</code> files locally in the <b>Jupyter notebook</b> located in <code>data/parsing.ipynb</code>. 
+            I experimented with various ways to organize the data and display it. In the end I decided to use a line graph and a bar graph to show the data I wanted.
+          </p>
+          <p>
+            Then, I adapted the <b>Python</b> code I used in my Jupyter notebook and turned it into an <b>AWS Lambda Function</b>. 
+            This function processes the <code>.csv</code> files stored in S3 and writes the data that's used in the graphs to a <b>DynamoDB</b> table.
+            Also, the reason I included the lambda function as a code embed is because there's no way to share its code without giving away my AWS login.
+          </p>
+          <p>
+            After that I created a component for the <b>Chatbot</b> and used ChatGPT's API to get responses. 
+          </p>
+          <p>
+            I also added a bunch of text and descriptions along the way.
+          </p>
+          <p>
+            <i>Enjoy :)</i>
+          </p>
         </div>
       )}
     </div>

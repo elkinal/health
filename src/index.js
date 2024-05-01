@@ -6,8 +6,9 @@ import { PieChart } from 'recharts';
 import Chart1 from "./Chart1";
 import Chart2 from "./Chart2";
 import Lambda from "./Lambda";
+import ChatGPT from "./ChatGPT";
 import AWS from 'aws-sdk';
-import config from './credentials'; // Import the configuration file
+import config from './credentials'; 
 
 function MainForm() {
   const [data, setData] = useState([]);
@@ -98,10 +99,13 @@ function MainForm() {
           <Chart1 data={data[0]} />
           <p class="description">
             This graph shows the average proportion of sleep stages per month. 
-
             The dashed horizontal lines represent the <a href="https://dawnhouseliving.com/blogs/news/deep-vs-light-sleep-what-amount-is-really-needed" target="_blank">recommended</a> levels for each sleep phase,
             serving as a guide that lets the viewer know what aspects of their sleep they should improve.
-
+          </p>
+          <p class="description">
+            Overall there is a tendency for the proportion of <u>Deep Sleep</u> to decrease across the two years, although this change is relatively minor.
+            What's slightly more concerning is that the proportions of both <u>REM Sleep</u> and <u>Deep Sleep</u> are consistently below the recommendations.
+            However, there is a natural varience in the sleep each individual requires so the user should consult a professional before making any assumptions.
           </p>
           <p class="variables">
             variables : <a href="https://garden.121health.app/Biometrics/percentageNightLight" target="_blank">percentageNightLight</a>, 
@@ -128,13 +132,14 @@ function MainForm() {
 
           <h1>Backend</h1>
           <p>
-            The raw <code>.csv</code> data is processed by an <b>AWS Lambda function</b> that loads the files from an <b>S3 Server</b> automatically once they are uploaded.
-            The data inside the <code>.csv</code> files is formatted for each graph and written into two separate <b>DynamoDB</b> tables.
+            The raw <code>.csv</code> data is processed by an <b>AWS Lambda function</b> that loads the files from an <b>S3 Server</b> automatically when they are uploaded.
+            The data inside the <code>.csv</code> files is formatted for each graph and written into two separate <b>DynamoDB</b> tables, which are then read by this <b>React.js</b> application.
           </p>
           <p>
             You can see the code for the <b>Lambda function</b> below.
           </p>
           <Lambda />
+          <ChatGPT />
         </div>
       )}
     </div>

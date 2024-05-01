@@ -14,7 +14,6 @@ code {
 
 .component {
   width:1000px;
-  height:1000px;
   background-color:whitesmoke;
   margin-left:auto;
   margin-right:auto;
@@ -23,4 +22,7 @@ code {
 
 #pie-chart {
   /* border:1px solid black; */
+  padding-right:40px;
+  padding-top:40px;
+  padding-bottom:40px;
 }

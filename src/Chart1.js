@@ -39,21 +39,23 @@ export default class Example extends PureComponent {
 
     // Drawing the graph
     return (
-      <ResponsiveContainer width="100%" height={400}>
-        <LineChart data={meanData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="month" />
-          <YAxis />
-          <Tooltip formatter={tooltipFormatter} />
-          <Legend />
-          <Line type="monotone" dataKey="percentageNightLight" stroke="#8884d8" strokeWidth={1.5} name="Night Light" />
-          <Line type="monotone" dataKey="percentageNightRem" stroke="#82ca9d" strokeWidth={1.5} name="Night REM" />
-          <Line type="monotone" dataKey="percentageNightDeep" stroke="#ffc658" strokeWidth={1.5} name="Night Deep" />
-          {Object.keys(idealValues).map((factor, index) => (
-            <ReferenceLine key={index} y={idealValues[factor]} stroke={getColor(factor)} strokeDasharray="5 5"/>
-          ))}
-        </LineChart>
-      </ResponsiveContainer>
+      <div class="chart">
+        <ResponsiveContainer width="100%" height={400}>
+          <LineChart data={meanData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="month" />
+            <YAxis />
+            <Tooltip formatter={tooltipFormatter} />
+            <Legend />
+            <Line type="monotone" dataKey="percentageNightLight" stroke="#8884d8" strokeWidth={1.5} name="Night Light" />
+            <Line type="monotone" dataKey="percentageNightRem" stroke="#82ca9d" strokeWidth={1.5} name="Night REM" />
+            <Line type="monotone" dataKey="percentageNightDeep" stroke="#ffc658" strokeWidth={1.5} name="Night Deep" />
+            {Object.keys(idealValues).map((factor, index) => (
+              <ReferenceLine key={index} y={idealValues[factor]} stroke={getColor(factor)} strokeDasharray="5 5"/>
+            ))}
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     );
   }
 }

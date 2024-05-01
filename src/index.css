@@ -14,15 +14,22 @@ code {
 
 .component {
   width:1000px;
-  background-color:whitesmoke;
   margin-left:auto;
   margin-right:auto;
   margin-top:200px;
 }
 
-#pie-chart {
+.chart-container {
+  background-color:red;
+}
+.chart {
   /* border:1px solid black; */
+  background-color:whitesmoke;
   padding-right:40px;
   padding-top:40px;
   padding-bottom:40px;
+  margin-top:40px;
+}
+html {
+  height:2000px;
 }

@@ -9,7 +9,7 @@ import AWS from 'aws-sdk';
 import config from './credentials'; // Import the configuration file
 
 function MainForm() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -18,7 +18,6 @@ function MainForm() {
   }, []);
 
   function getData() {
-
     // Configuring AWS client
     AWS.config.update({
       region: 'us-east-2',
@@ -28,7 +27,7 @@ function MainForm() {
 
     const docClient = new AWS.DynamoDB.DocumentClient();
 
-    const params = {
+    const params1 = {
       TableName: 'sleep_data',
       ProjectionExpression: '#start, #percentageNightDeep, #percentageNightLight, #percentageNightRem, #percentageNightUnknown',
       ExpressionAttributeNames: {
@@ -40,19 +39,43 @@ function MainForm() {
       }
     };
 
-    // Ensure data only passed as prop if it loads
-    docClient.scan(params, (err, result) => {
-      if (err) {
-        console.error("Unable to read data from DynamoDB. Error JSON:", JSON.stringify(err, null, 2));
-        setError("Unable to fetch data. Please try again later.");
-      } else {
-        // Sort the data in increasing order by date
-        const sortedData = result.Items.sort((a, b) => {
-          return new Date(a.start) - new Date(b.start);
-        });
-        setData(sortedData);
+    const params2 = {
+      TableName: 'latency_data', 
+      ProjectionExpression: '#weekday, #school_percent_deviation, #summer_percent_deviation', 
+      ExpressionAttributeNames: {
+        '#weekday': 'weekday', 
+        '#school_percent_deviation': 'school_percent_deviation',
+        '#summer_percent_deviation' : 'summer_percent_deviation'
       }
-      setLoading(false); 
+    };
+
+    // Fetch data from first table
+    docClient.scan(params1, (err1, result1) => {
+      if (err1) {
+        console.error("Unable to read data from first table. Error JSON:", JSON.stringify(err1, null, 2));
+        setError("Unable to fetch data. Please try again later.");
+        setLoading(false);
+        return;
+      }
+
+      // Fetch data from second table
+      docClient.scan(params2, (err2, result2) => {
+        if (err2) {
+          console.error("Unable to read data from second table. Error JSON:", JSON.stringify(err2, null, 2));
+          setError("Unable to fetch data. Please try again later.");
+          setLoading(false);
+          return;
+        }
+
+        // Combine data from both tables
+        const combinedData = [
+          result1.Items.sort((a, b) => new Date(a.start) - new Date(b.start)),
+          result2.Items
+        ];
+
+        setData(combinedData);
+        setLoading(false);
+      });
     });
   }
 
@@ -63,9 +86,9 @@ function MainForm() {
       ) : error ? (
         <p>{error}</p>
       ) : (
-        <div id="pie-chart">
-          <Chart1 data={data} />
-          <Chart2 data={data} />
+        <div id="chart-container">
+          <Chart1 data={data[0]} />
+          <Chart2 data={data[1]} />
         </div>
       )}
     </div>

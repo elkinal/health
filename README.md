@@ -1,4 +1,4 @@
-# Setup Intructions
+# Setup Instructions
 
 You should clone this repo in VSCode
 
